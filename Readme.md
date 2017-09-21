@@ -3,7 +3,7 @@
 | Python | Django | Azure Web App, Virtual Machine| |
 
 
-# Sample Python web application built using Django framework
+# Sample Python web application built on Django framework
 
 This is a sample Python Django web application that you can use to deploy on Azure.
 
