@@ -1,17 +1,17 @@
-FROM node:boron
+FROM python:3.4
 
-# Create app directory
-WORKDIR /app
+RUN mkdir /code
+WORKDIR /code
+ADD requirements.txt /code/
+RUN pip install -r requirements.txt
+ADD . /code/
+# ssh
+ENV SSH_PASSWD "root:Docker!"
+RUN apt-get update \
+	&& apt-get install -y --no-install-recommends openssh-server \
+	&& echo "$SSH_PASSWD" | chpasswd 
 
-# Install app dependencies
-# COPY package.json .
-# For npm@5 or later, copy package-lock.json as well
-# COPY package.json package-lock.json ./
-
-RUN npm install
-
-# Bundle app source
-COPY . .
-
-EXPOSE 8080 80
-CMD [ "npm", "start" ]
+COPY sshd_config /etc/ssh/
+	
+EXPOSE 8000 2222
+CMD ["python", "/code/manage.py", "runserver", "0.0.0.0:8000"]
