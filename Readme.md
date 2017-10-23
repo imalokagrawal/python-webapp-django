@@ -11,7 +11,7 @@ This sample application is built using Visual Studio 2017.
 
 ## License:
 
-See [License](https://www.visualstudio.com)
+See [LICENSE](LICENSE).
 
 ## Contributing
 
